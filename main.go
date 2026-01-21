@@ -31,15 +31,10 @@ func main() {
 
 	client := openai.NewClient(apiKey)
 	if len(os.Args) > 1 {
-		fullCommand := strings.Join(os.Args[1:], " ")
-		colonIndex := strings.Index(fullCommand, ":")
-		if colonIndex != -1 && colonIndex < len(fullCommand)-1 {
-			query := strings.TrimSpace(fullCommand[colonIndex+1:])
-			if query != "" {
-				handleOneShot(client, query)
-				return
-			}
-		}
+		// Join all arguments as the query
+		query := strings.Join(os.Args[1:], " ")
+		handleOneShot(client, query)
+		return
 	}
 
 	reader := bufio.NewReader(os.Stdin)

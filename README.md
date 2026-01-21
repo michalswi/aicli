@@ -46,18 +46,24 @@ source ~/.zshrc
 
 ### One-shot Mode (Command-line)
 
-Ask a question directly from the command line using the colon (`:`) separator:
+Ask a question directly from the command line:
 
 ```bash
-./aicli : tell me something about kubernetes
-./aicli : what is the difference between TCP and UDP?
-./aicli : explain aws s3 buckets
+./aicli what is kubernetes
+./aicli tell me about TCP and UDP
+./aicli explain docker containers
+```
+
+**Important:** For queries with special characters or apostrophes, use quotes:
+```bash
+./aicli "what's the capital of japan?"
+./aicli "how does DNS work?"
 ```
 
 You can also run without building first:
 
 ```bash
-go run main.go : how does DNS work?
+go run main.go "what is the difference between REST and GraphQL?"
 ```
 
 ### Interactive Mode
@@ -88,21 +94,21 @@ make build-linux
 
 ### One-shot Mode
 ```bash
-$ ./aicli : what is the capital of France?
+$ ./aicli "what is the capital of France?"
 ⏳ Waiting for ChatGPT...
 The capital of France is Paris.
 
-$ ./aicli : explain docker in simple terms
+$ ./aicli ": explain docker in simple terms"
+### One-shot Mode
+```bash
+$ ./aicli what is the capital of France
+⏳ Waiting for ChatGPT...
+The capital of France is Paris.
+
+$ ./aicli "explain docker in simple terms"
 ⏳ Waiting for ChatGPT...
 Docker is a platform that allows you to package applications and their dependencies into containers...
 ```
-
-### Interactive Mode
-```
-Welcome to AI CLI - ChatGPT Terminal Interface
-Type 'h' for help, 'q' to quit
---------------------------------------------------
-
 [15:30:45] aicli> What is the capital of France?
 ⏳ Waiting for ChatGPT...
 
