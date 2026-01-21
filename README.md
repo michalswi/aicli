@@ -19,14 +19,6 @@ A simple Go-based terminal application for interacting with OpenAI's ChatGPT API
 - Go 1.25 or higher
 - OpenAI API key
 
-## Installation
-
-1. Clone or download this repository
-2. Install dependencies:
-   ```bash
-   go mod tidy
-   ```
-
 ## Setup
 
 Set your OpenAI API key as an environment variable:
@@ -44,14 +36,24 @@ source ~/.zshrc
 
 ## Usage
 
+### Build
+
+```bash
+go mod tidy
+
+make build-mac
+or
+make build-linux
+```
+
 ### One-shot Mode (Command-line)
 
 Ask a question directly from the command line:
 
 ```bash
-./aicli what is kubernetes
-./aicli tell me about TCP and UDP
-./aicli explain docker containers
+$ ./aicli "what is the capital of France?"
+⏳ Waiting for ChatGPT...
+The capital of France is Paris.
 ```
 
 **Important:** For queries with special characters or apostrophes, use quotes:
@@ -60,74 +62,21 @@ Ask a question directly from the command line:
 ./aicli "how does DNS work?"
 ```
 
-You can also run without building first:
-
-```bash
-go run main.go "what is the difference between REST and GraphQL?"
-```
-
 ### Interactive Mode
 
 Run the application without arguments to enter interactive mode:
 
 ```bash
-go run main.go
-```
+$ ./aicli
+Welcome to AI CLI - ChatGPT Terminal Interface
+Type 'h' for help, 'q' to quit
+--------------------------------------------------
 
-Or build and run:
-
-```bash
-make build-mac
-or
-make build-linux
-
-./aicli
-```
-
-### Commands
-
-- Type any message to chat with ChatGPT
-- `h` or `help` - Display help message
-- `q`, `quit`, or `exit` - Exit the application
-
-## Example Session
-
-### One-shot Mode
-```bash
-$ ./aicli "what is the capital of France?"
-⏳ Waiting for ChatGPT...
-The capital of France is Paris.
-
-$ ./aicli ": explain docker in simple terms"
-### One-shot Mode
-```bash
-$ ./aicli what is the capital of France
-⏳ Waiting for ChatGPT...
-The capital of France is Paris.
-
-$ ./aicli "explain docker in simple terms"
-⏳ Waiting for ChatGPT...
-Docker is a platform that allows you to package applications and their dependencies into containers...
-```
-[15:30:45] aicli> What is the capital of France?
+[19:49:49] aicli> what is the capital of France?
 ⏳ Waiting for ChatGPT...
 
 The capital of France is Paris.
 
-[15:30:52] aicli> Tell me more about it
-⏳ Waiting for ChatGPT...
-
-Paris is not only the capital but also the largest city of France...
+[19:49:50] aicli> q
+👋 Exiting. Goodbye!
 ```
-
-## Configuration
-
-The application uses `GPT-5-mini` by default. To change the model, edit the `openaiModel` constant in `main.go`:
-
-```go
-const openaiModel = openai.GPT5Mini
-```
-
-## License
-
-See LICENSE file for details.
