@@ -27,20 +27,11 @@ Set your OpenAI API key as an environment variable:
 export OPENAI_API_KEY="your-api-key-here"
 ```
 
-To make this permanent, add it to your `~/.zshrc` or `~/.bashrc`:
-
-```bash
-echo 'export OPENAI_API_KEY="your-api-key-here"' >> ~/.zshrc
-source ~/.zshrc
-```
-
 ## Usage
 
 ### Build
 
 ```bash
-go mod tidy
-
 make build-mac
 or
 make build-linux
