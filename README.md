@@ -57,17 +57,15 @@ $ aicli what day is today
 ⏳ Waiting for ChatGPT...
 --------------------------------------------------
 Today is Thursday, January 22, 2026.
-
-(If you meant a different timezone or need the week calendar, tell me your location.)
 --------------------------------------------------
-⏱️  Response time: 11.66s
+⏱️  Response time: 2.35s | 🪙 Tokens: 83 in, 85 out, 168 total
 
 $ aicli "what is the capital of France?"
 ⏳ Waiting for ChatGPT...
 --------------------------------------------------
 Paris.
 --------------------------------------------------
-⏱️  Response time: 2.30s
+⏱️  Response time: 1.97s | 🪙 Tokens: 86 in, 11 out, 97 total
 ```
 
 **Important:** For queries with special characters or apostrophes, use quotes:
@@ -89,9 +87,9 @@ Type 'h' for help, 'q' to quit
 [19:49:49] aicli> what is the capital of France?
 ⏳ Waiting for ChatGPT...
 
-The capital of France is Paris.
+Paris — the capital and largest city of France, located on the River Seine in northern France.
 --------------------------------------------------
-⏱️  Response time: 1.44s
+⏱️  Response time: 2.60s | 🪙 Tokens: 86 in, 92 out, 178 total
 
 [19:49:50] aicli> q
 👋 Exiting. Goodbye!

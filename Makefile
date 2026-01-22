@@ -1,7 +1,7 @@
 GOLANG_VERSION := 1.25.5
 
 APP_NAME := aicli
-APP_VERSION := 0.1.1
+APP_VERSION := 1.0.1
 
 .DEFAULT_GOAL := help
 .PHONY: build-mac build-linux

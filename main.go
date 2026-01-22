@@ -74,7 +74,11 @@ func main() {
 
 		fmt.Printf("\n%s\n", response.Choices[0].Message.Content)
 		fmt.Printf("%s\n", strings.Repeat("-", 50))
-		fmt.Printf("⏱️  Response time: %.2fs\n", duration.Seconds())
+		fmt.Printf("⏱️  Response time: %.2fs | ", duration.Seconds())
+		fmt.Printf("🪙 Tokens: %d in, %d out, %d total\n", 
+			response.Usage.PromptTokens, 
+			response.Usage.CompletionTokens, 
+			response.Usage.TotalTokens)
 
 		conversation = append(conversation, response.Choices[0].Message)
 	}
@@ -101,7 +105,11 @@ func handleOneShot(client *openai.Client, query string) {
 	fmt.Printf("%s\n", strings.Repeat("-", 50))
 	fmt.Println(response.Choices[0].Message.Content)
 	fmt.Printf("%s\n", strings.Repeat("-", 50))
-	fmt.Printf("⏱️  Response time: %.2fs\n", duration.Seconds())
+	fmt.Printf("⏱️  Response time: %.2fs | ", duration.Seconds())
+	fmt.Printf("🪙 Tokens: %d in, %d out, %d total\n", 
+		response.Usage.PromptTokens, 
+		response.Usage.CompletionTokens, 
+		response.Usage.TotalTokens)
 }
 
 // chatWithGPT sends the conversation to OpenAI and returns the response with duration
