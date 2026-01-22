@@ -66,13 +66,15 @@ func main() {
 			Content: command,
 		})
 
-		response, err := chatWithGPT(client, conversation)
+		response, duration, err := chatWithGPT(client, conversation)
 		if err != nil {
 			fmt.Printf("Error: %v\n", err)
 			continue
 		}
 
-		fmt.Printf("\n%s\n\n", response.Choices[0].Message.Content)
+		fmt.Printf("\n%s\n", response.Choices[0].Message.Content)
+		fmt.Printf("%s\n", strings.Repeat("-", 50))
+		fmt.Printf("⏱️  Response time: %.2fs\n", duration.Seconds())
 
 		conversation = append(conversation, response.Choices[0].Message)
 	}
@@ -91,18 +93,22 @@ func handleOneShot(client *openai.Client, query string) {
 		},
 	}
 
-	response, err := chatWithGPT(client, conversation)
+	response, duration, err := chatWithGPT(client, conversation)
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
 
+	fmt.Printf("%s\n", strings.Repeat("-", 50))
 	fmt.Println(response.Choices[0].Message.Content)
+	fmt.Printf("%s\n", strings.Repeat("-", 50))
+	fmt.Printf("⏱️  Response time: %.2fs\n", duration.Seconds())
 }
 
-// chatWithGPT sends the conversation to OpenAI and returns the response
-func chatWithGPT(client *openai.Client, conversation []openai.ChatCompletionMessage) (openai.ChatCompletionResponse, error) {
+// chatWithGPT sends the conversation to OpenAI and returns the response with duration
+func chatWithGPT(client *openai.Client, conversation []openai.ChatCompletionMessage) (openai.ChatCompletionResponse, time.Duration, error) {
 	fmt.Println("⏳ Waiting for ChatGPT...")
 
+	startTime := time.Now()
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
@@ -110,12 +116,13 @@ func chatWithGPT(client *openai.Client, conversation []openai.ChatCompletionMess
 			Messages: conversation,
 		},
 	)
+	duration := time.Since(startTime)
 
 	if err != nil {
-		return openai.ChatCompletionResponse{}, fmt.Errorf("ChatGPT API error: %w", err)
+		return openai.ChatCompletionResponse{}, 0, fmt.Errorf("ChatGPT API error: %w", err)
 	}
 
-	return resp, nil
+	return resp, duration, nil
 }
 
 // prompt displays a prompt to the user and reads their input

@@ -27,14 +27,25 @@ Set your OpenAI API key as an environment variable:
 export OPENAI_API_KEY="your-api-key-here"
 ```
 
+To make this permanent, add it to your `~/.zshrc` or `~/.bashrc`:
+```bash
+export OPENAI_API_KEY="your-api-key-here"
+alias aicli='PATH_TO_BINARY/aicli'
+```
+
 ## Usage
 
 ### Build
 
 ```bash
-make build-mac
-or
-make build-linux
+$ make
+
+Usage:
+  make <target>
+
+Targets:
+  build-mac        Build for mac
+  build-linux      Build for linux
 ```
 
 ### One-shot Mode (Command-line)
@@ -42,15 +53,27 @@ make build-linux
 Ask a question directly from the command line:
 
 ```bash
-$ ./aicli "what is the capital of France?"
+$ aicli what day is today
 ⏳ Waiting for ChatGPT...
-The capital of France is Paris.
+--------------------------------------------------
+Today is Thursday, January 22, 2026.
+
+(If you meant a different timezone or need the week calendar, tell me your location.)
+--------------------------------------------------
+⏱️  Response time: 11.66s
+
+$ aicli "what is the capital of France?"
+⏳ Waiting for ChatGPT...
+--------------------------------------------------
+Paris.
+--------------------------------------------------
+⏱️  Response time: 2.30s
 ```
 
 **Important:** For queries with special characters or apostrophes, use quotes:
 ```bash
-./aicli "what's the capital of japan?"
-./aicli "how does DNS work?"
+aicli "what's the capital of poland?"
+aicli "how does DNS work?"
 ```
 
 ### Interactive Mode
@@ -58,7 +81,7 @@ The capital of France is Paris.
 Run the application without arguments to enter interactive mode:
 
 ```bash
-$ ./aicli
+$ aicli
 Welcome to AI CLI - ChatGPT Terminal Interface
 Type 'h' for help, 'q' to quit
 --------------------------------------------------
@@ -67,6 +90,8 @@ Type 'h' for help, 'q' to quit
 ⏳ Waiting for ChatGPT...
 
 The capital of France is Paris.
+--------------------------------------------------
+⏱️  Response time: 1.44s
 
 [19:49:50] aicli> q
 👋 Exiting. Goodbye!
