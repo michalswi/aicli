@@ -12,17 +12,6 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
-const (
-	appName = "aicli"
-	// https://pkg.go.dev/github.com/sashabaranov/go-openai#pkg-constants
-	openaiModel = openai.GPT5Mini
-	// openaiModel  = openai.GPT4oMini
-	systemPrompt = `You are an expert AI assistant specializing in technology, IT, cloud computing, security, artificial intelligence, networking, and general knowledge. 
-You provide clear, accurate, and helpful answers to questions across these domains. 
-Your responses are concise yet comprehensive, with practical examples when appropriate. 
-You stay up-to-date with current technologies and best practices.`
-)
-
 func main() {
 	apiKey := os.Getenv("OPENAI_API_KEY")
 	if apiKey == "" {
@@ -75,9 +64,9 @@ func main() {
 		fmt.Printf("\n%s\n", response.Choices[0].Message.Content)
 		fmt.Printf("%s\n", strings.Repeat("-", 50))
 		fmt.Printf("⏱️  Response time: %.2fs | ", duration.Seconds())
-		fmt.Printf("🪙 Tokens: %d in, %d out, %d total\n", 
-			response.Usage.PromptTokens, 
-			response.Usage.CompletionTokens, 
+		fmt.Printf("🪙 Tokens: %d in, %d out, %d total\n",
+			response.Usage.PromptTokens,
+			response.Usage.CompletionTokens,
 			response.Usage.TotalTokens)
 
 		conversation = append(conversation, response.Choices[0].Message)
@@ -106,9 +95,9 @@ func handleOneShot(client *openai.Client, query string) {
 	fmt.Println(response.Choices[0].Message.Content)
 	fmt.Printf("%s\n", strings.Repeat("-", 50))
 	fmt.Printf("⏱️  Response time: %.2fs | ", duration.Seconds())
-	fmt.Printf("🪙 Tokens: %d in, %d out, %d total\n", 
-		response.Usage.PromptTokens, 
-		response.Usage.CompletionTokens, 
+	fmt.Printf("🪙 Tokens: %d in, %d out, %d total\n",
+		response.Usage.PromptTokens,
+		response.Usage.CompletionTokens,
 		response.Usage.TotalTokens)
 }
 
