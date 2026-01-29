@@ -2,6 +2,8 @@ package main
 
 import openai "github.com/sashabaranov/go-openai"
 
+var version = "v1.0.2"
+
 const (
 	appName = "aicli"
 	// https://pkg.go.dev/github.com/sashabaranov/go-openai#pkg-constants

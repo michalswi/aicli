@@ -13,6 +13,24 @@ import (
 )
 
 func main() {
+	// Handle special flags that don't require API key
+	if len(os.Args) > 1 {
+		arg := os.Args[1]
+		switch arg {
+		case "-h", "--help":
+			displayHelp()
+			return
+		case "-v", "--version":
+			fmt.Printf("%s version %s\n", appName, version)
+			return
+		case "-sp", "--sys-prompt":
+			fmt.Println("System Prompt:")
+			fmt.Println(strings.Repeat("-", 50))
+			fmt.Println(systemPrompt)
+			return
+		}
+	}
+
 	apiKey := os.Getenv("OPENAI_API_KEY")
 	if apiKey == "" {
 		log.Fatal("Please set the OPENAI_API_KEY environment variable")
@@ -151,8 +169,14 @@ func prompt(reader *bufio.Reader) (string, bool) {
 // displayHelp prints available commands
 func displayHelp() {
 	fmt.Println("\n📖 Available Commands:")
+	fmt.Println("\nInteractive mode commands:")
 	fmt.Println("  h, help  - Display this help message")
 	fmt.Println("  q, quit  - Exit the application")
 	fmt.Println("  Any other text will be sent to ChatGPT")
+	fmt.Println("\nCommand-line options:")
+	fmt.Println("  -h, --help       - Display this help message")
+	fmt.Println("  -v, --version    - Display version information")
+	fmt.Println("  -sp, --sys-prompt - Display the system prompt")
+	fmt.Println("  <query>          - Send a one-shot query to ChatGPT")
 	fmt.Println()
 }

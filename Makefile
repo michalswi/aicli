@@ -1,7 +1,8 @@
 GOLANG_VERSION := 1.25.5
 
 APP_NAME := aicli
-APP_VERSION := 1.0.1
+# adjust version in vars.go as well
+APP_VERSION := 1.0.2
 
 .DEFAULT_GOAL := help
 .PHONY: build-mac build-linux
