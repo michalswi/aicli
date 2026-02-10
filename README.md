@@ -1,18 +1,16 @@
-# AI CLI - ChatGPT Terminal Interface
+# AI CLI - ChatGPT terminal interface
 
 ![](https://img.shields.io/github/issues/michalswi/aicli)
 ![](https://img.shields.io/github/forks/michalswi/aicli)
 ![](https://img.shields.io/github/stars/michalswi/aicli)
 ![](https://img.shields.io/github/last-commit/michalswi/aicli)
 
-A simple Go-based terminal application for interacting with OpenAI's ChatGPT API.
+go-based terminal application for interacting with OpenAI's ChatGPT API
 
 ## Features
 
 - 💬 Interactive chat with ChatGPT in your terminal
-- 🚀 One-shot mode: ask questions directly from command line using `:`
-- 🔄 Maintains conversation context in interactive mode
-- ⚡ Built with `github.com/sashabaranov/go-openai`
+- 🚀 One-shot mode: ask questions directly from command line in your terminal
 
 ## Prerequisites
 
@@ -48,7 +46,13 @@ Targets:
   build-linux      Build for linux
 ```
 
-### One-shot Mode (Command-line)
+### Help
+
+```bash
+aicli --help
+```
+
+### One-shot Mode (command-line)
 
 Ask a question directly from the command line:
 
@@ -56,16 +60,16 @@ Ask a question directly from the command line:
 $ aicli what day is today
 ⏳ Waiting for ChatGPT...
 --------------------------------------------------
-Today is Thursday, January 22, 2026.
+Today is Tuesday, February 10, 2026.
 --------------------------------------------------
-⏱️  Response time: 2.35s | 🪙 Tokens: 83 in, 85 out, 168 total
+⏱️  Response time: 12.87s | 🪙 Tokens: 97 in, 533 out, 630 total
 
-$ aicli "what is the capital of France?"
+$ aicli "what's the capital of Poland? short"
 ⏳ Waiting for ChatGPT...
 --------------------------------------------------
-Paris.
+Warsaw.
 --------------------------------------------------
-⏱️  Response time: 1.97s | 🪙 Tokens: 86 in, 11 out, 97 total
+⏱️  Response time: 2.91s | 🪙 Tokens: 101 in, 76 out, 177 total
 ```
 
 **Important:** For queries with special characters or apostrophes, use quotes:
@@ -80,17 +84,17 @@ Run the application without arguments to enter interactive mode:
 
 ```bash
 $ aicli
-Welcome to AI CLI - ChatGPT Terminal Interface
+Welcome to AI CLI - chatGPT terminal interface
 Type 'h' for help, 'q' to quit
 --------------------------------------------------
 
-[19:49:49] aicli> what is the capital of France?
+[09:01:48] aicli> what's the capital of Poland? short
 ⏳ Waiting for ChatGPT...
 
-Paris — the capital and largest city of France, located on the River Seine in northern France.
+Warsaw.
 --------------------------------------------------
-⏱️  Response time: 2.60s | 🪙 Tokens: 86 in, 92 out, 178 total
+⏱️  Response time: 1.90s | 🪙 Tokens: 101 in, 12 out, 113 total
 
-[19:49:50] aicli> q
+[09:02:10] aicli> q
 👋 Exiting. Goodbye!
 ```

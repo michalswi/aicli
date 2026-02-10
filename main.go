@@ -28,6 +28,9 @@ func main() {
 			fmt.Println(strings.Repeat("-", 50))
 			fmt.Println(systemPrompt)
 			return
+		case "-m", "--model":
+			fmt.Println(openaiModel)
+			return
 		}
 	}
 
@@ -46,7 +49,7 @@ func main() {
 
 	reader := bufio.NewReader(os.Stdin)
 
-	fmt.Println("Welcome to AI CLI - ChatGPT Terminal Interface")
+	fmt.Println("Welcome to AI CLI - ChatGPT terminal interface")
 	fmt.Println("Type 'h' for help, 'q' to quit")
 	fmt.Println(strings.Repeat("-", 50))
 
@@ -155,7 +158,7 @@ func prompt(reader *bufio.Reader) (string, bool) {
 
 	switch command {
 	case "q", "quit", "exit":
-		fmt.Println("👋 Exiting. Goodbye!")
+		fmt.Println("👋 Goodbye!")
 		return "", false
 	case "h", "help":
 		return "h", true
@@ -174,9 +177,10 @@ func displayHelp() {
 	fmt.Println("  q, quit  - Exit the application")
 	fmt.Println("  Any other text will be sent to ChatGPT")
 	fmt.Println("\nCommand-line options:")
-	fmt.Println("  -h, --help       - Display this help message")
-	fmt.Println("  -v, --version    - Display version information")
+	fmt.Println("  -h,  --help       - Display this help message")
+	fmt.Println("  -v,  --version    - Display version information")
 	fmt.Println("  -sp, --sys-prompt - Display the system prompt")
+	fmt.Println("  -m,  --model      - Display the current model being used")
 	fmt.Println("  <query>          - Send a one-shot query to ChatGPT")
 	fmt.Println()
 }
